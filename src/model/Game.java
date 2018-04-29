@@ -60,7 +60,7 @@ public class Game {
                         ranks[rank]},
                 "Congratulations!",
                 JOptionPane.INFORMATION_MESSAGE,
-                new ImageIcon(getClass().getResource("/completeGame.jpg")));
+                new ImageIcon(getClass().getResource("/complete.png")));
     }
 
     public void incrementMinesLeft(){

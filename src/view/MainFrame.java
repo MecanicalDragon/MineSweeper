@@ -19,7 +19,7 @@ public class MainFrame extends JFrame{
 
     public MainFrame(){
         Image image = Toolkit.getDefaultToolkit().createImage
-                (getClass().getResource("/completeGame.jpg"));
+                (getClass().getResource("/complete.png"));
         setIconImage( image );
         setTitle("MineSweeper");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +47,7 @@ public class MainFrame extends JFrame{
                                 "@MecanicalDragon",
                         "Resign",
                         JOptionPane.INFORMATION_MESSAGE,
-                        new ImageIcon(getClass().getResource("/retired.jpg")));
+                        new ImageIcon(getClass().getResource("/retired.png")));
             }
         });
     }

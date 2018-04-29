@@ -38,15 +38,15 @@ class LevelFrame extends JDialog {
 
     private JPanel addOwnRulesPanel() {
         JPanel ownRulesPanel = new JPanel();
+        ownRulesPanel.setBounds(-7,0,180,23);
         ownRulesPanel.setLayout(new GridLayout(1,3));
-        ownRulesPanel.setBounds(0,0,180,23);
-        widthField = new view.KeepOutField();
+        widthField = new KeepOutField();
         widthField.setToolTipText("Width. Min: 2, max: 25");
         ownRulesPanel.add(widthField);
-        heightField = new view.KeepOutField();
+        heightField = new KeepOutField();
         heightField.setToolTipText("Height. Min: 2, max: 19");
         ownRulesPanel.add(heightField);
-        minesCountField = new view.KeepOutField();
+        minesCountField = new KeepOutField();
         minesCountField.setToolTipText("Mines amount. Min: 3, max: 470");
         minesCountField.addActionListener(e -> {
             ownRules = true;
