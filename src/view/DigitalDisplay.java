@@ -3,7 +3,6 @@ package view;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -16,7 +15,7 @@ public class DigitalDisplay extends JTextField {
         setBackground(Color.BLACK);
         setHorizontalAlignment(JTextField.RIGHT);
 
-        try(InputStream is = new FileInputStream("src/resources/digital.ttf")){
+        try(InputStream is = (getClass().getResourceAsStream("/digital.ttf"))){
             Font font = Font.createFont(Font.TRUETYPE_FONT, is);
             font = font.deriveFont(Font.BOLD,32f);
             setFont(font);

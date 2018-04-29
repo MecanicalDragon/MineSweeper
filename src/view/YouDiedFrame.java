@@ -17,7 +17,7 @@ public class YouDiedFrame extends JWindow {
                     view.MainFrame.getCurrentMainFrame().getLocation().y+115,
                     210,210);
 
-        background = new JLabel(new ImageIcon("src/resources/youdied.jpg"));
+        background = new JLabel(new ImageIcon(getClass().getResource("/youdied.jpg")));
         background.setBounds(0,0,210,210);
         add(background);
 
@@ -48,7 +48,7 @@ public class YouDiedFrame extends JWindow {
         resurrect.setForeground(Color.white);
         resurrect.setToolTipText("You will rise recruit-private again");
         resurrect.addActionListener(e -> {
-            Game.startNewGame();
+            new Game();
             dispose();
         });
         background.add(resurrect);

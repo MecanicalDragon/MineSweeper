@@ -30,7 +30,7 @@ class LevelFrame extends JDialog {
         JButton ok = new JButton("Accept consequences");
         ok.addActionListener(e -> confirmChanges());
         add(ok);
-        JLabel back = new JLabel(new ImageIcon("src/resources/keepout.jpg"));
+        JLabel back = new JLabel(new ImageIcon(getClass().getResource("/keepout.jpg")));
         add(back);
         back.add(ownRulesPanel);
         setVisible(true);
@@ -116,7 +116,7 @@ class LevelFrame extends JDialog {
             MineField.setNextMinesCount(m);
             MineField.setNextHeight(h);
             MineField.setNextWidth(w);
-            Game.startNewGame();
+            new Game();
             dispose();
     }
 
@@ -127,7 +127,7 @@ class LevelFrame extends JDialog {
                 && !widthField.getText().isEmpty())
             acceptOwnRules(minesCountField.getText(), heightField.getText(), widthField.getText());
         else  {
-            Game.startNewGame();
+            new Game();
             dispose();
         }
 

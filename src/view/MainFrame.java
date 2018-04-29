@@ -18,7 +18,8 @@ public class MainFrame extends JFrame{
     private JLabel background;
 
     public MainFrame(){
-        Image image = Toolkit.getDefaultToolkit().createImage("src/resources/completeGame.jpg");
+        Image image = Toolkit.getDefaultToolkit().createImage
+                (getClass().getResource("/completeGame.jpg"));
         setIconImage( image );
         setTitle("MineSweeper");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -46,18 +47,18 @@ public class MainFrame extends JFrame{
                                 "@MecanicalDragon",
                         "Resign",
                         JOptionPane.INFORMATION_MESSAGE,
-                        new ImageIcon("src/resources/retired.jpg"));
+                        new ImageIcon(getClass().getResource("/retired.jpg")));
             }
         });
     }
 
     private void addGUIElements() {
-        background = new JLabel(new ImageIcon("src/resources/field.jpg"));
+        background = new JLabel(new ImageIcon(getClass().getResource("/field.jpg")));
         background.setBounds(0,0,800,400);
         add(background);
 
-        JButton newGame = new JButton("Start New model.Game");
-        newGame.addActionListener(e -> Game.startNewGame());
+        JButton newGame = new JButton("Start New Game");
+        newGame.addActionListener(e -> new Game());
         newGame.setBounds(525,70,200,28);
 
         JButton changeDifficulty = new JButton("Change Difficulty");

@@ -4,7 +4,6 @@ import control.MineField;
 import control.MinedButton;
 import javax.sound.sampled.*;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 
 public class Digger{
@@ -37,22 +36,22 @@ public class Digger{
         if (diggedButton.getHoard()<10
                 && (diggedButton.isEnabled() || ignoreNotZeroTile)) {
             if (ignoreNotZeroTile){
-                playSound("src/resources/dig.wav");
+                playSound("/dig.wav");
             }
-            String s = String.format("src/resources/%d.jpg", diggedButton.getHoard());
-            diggedButton.setIcon(new ImageIcon(s));
-            diggedButton.setDisabledIcon(new ImageIcon(s));
+            String s = String.format("/%d.jpg", diggedButton.getHoard());
+            diggedButton.setIcon(new ImageIcon(getClass().getResource(s)));
+            diggedButton.setDisabledIcon(new ImageIcon(getClass().getResource(s)));
             diggedButton.setEnabled(false);
 
             if (diggedButton.getHoard() == 9) {
-                if (!Game.IsFinished()){
-                    Game.endGame();
-                    playSound("src/resources/explosion.wav");
+                if (!Game.getCurrentGame().IsFinished()){
+                    Game.getCurrentGame().endGame();
+                    playSound("/explosion.wav");
                     showAllMines();
                 }
             }
 
-            else if ((diggedButton.getHoard() == 0||ignoreNotZeroTile) && !Game.IsFinished()) {
+            else if ((diggedButton.getHoard() == 0||ignoreNotZeroTile) && !Game.getCurrentGame().IsFinished()) {
                 if (w != 0
                         && field[h][w - 1].isEnabled())
                     new Digger(h,w-1).start();
@@ -83,15 +82,15 @@ public class Digger{
                     new Digger(h+1,w).start();
             }
 
-            if (!ignoreNotZeroTile && !Game.IsFinished()) {
-                Game.decrementClosedTiles();
+            if (!ignoreNotZeroTile && !Game.getCurrentGame().IsFinished()) {
+                Game.getCurrentGame().decrementClosedTiles();
             }
         }
     }
 
     void playSound(String s) {
         try {
-            AudioInputStream sound = AudioSystem.getAudioInputStream(new File(s));
+            AudioInputStream sound = AudioSystem.getAudioInputStream(getClass().getResource((s)));
             Clip clip = AudioSystem.getClip();
             clip.open(sound);
             clip.setFramePosition(0);

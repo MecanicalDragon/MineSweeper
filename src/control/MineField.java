@@ -43,13 +43,13 @@ public class MineField extends JPanel{
     private void markMine(int h, int w){
         if (mineField[h][w].getHoard()<10) {
             mineField[h][w].superIncrementHoard();
-            mineField[h][w].setIcon(new ImageIcon("src/resources/flag.jpg"));
-            Game.decrementMinesLeft();
+            mineField[h][w].setIcon(new ImageIcon(getClass().getResource("/flag.jpg")));
+            Game.getCurrentGame().decrementMinesLeft();
         }
         else {
             mineField[h][w].superDecrement();
             mineField[h][w].setIcon(new ImageIcon(""));
-            Game.incrementMinesLeft();
+            Game.getCurrentGame().incrementMinesLeft();
         }
     }
 
@@ -63,17 +63,17 @@ public class MineField extends JPanel{
                     @Override
                     public void mousePressed(MouseEvent e) {
                         if (SwingUtilities.isMiddleMouseButton(e) || e.getClickCount() == 2) {
-                            if (!minedButton.isEnabled() && !Game.IsFinished()) {
-                                Game.incrementClicks();
+                            if (!minedButton.isEnabled() && !Game.getCurrentGame().IsFinished()) {
+                                Game.getCurrentGame().incrementClicks();
                                 new Digger(finalH, finalW, true).start();
                             }
                         } else if (SwingUtilities.isRightMouseButton(e)) {
-                            if (minedButton.isEnabled() && !Game.IsFinished()) {
+                            if (minedButton.isEnabled() && !Game.getCurrentGame().IsFinished()) {
                                 markMine(finalH, finalW);
                             }
                         } else if (SwingUtilities.isLeftMouseButton(e)) {
-                            if (minedButton.isEnabled() && !Game.IsFinished()) {
-                                Game.incrementClicks();
+                            if (minedButton.isEnabled() && !Game.getCurrentGame().IsFinished()) {
+                                Game.getCurrentGame().incrementClicks();
                                 new Digger(finalH, finalW).start();
                             }
                         }
