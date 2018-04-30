@@ -46,7 +46,6 @@ public class YouDiedFrame extends JWindow {
         resurrect.setBackground(new Color(25,25,25));
         resurrect.setBounds(55,175,100,25);
         resurrect.setForeground(Color.white);
-        resurrect.setToolTipText("You will rise recruit-private again");
         resurrect.addActionListener(e -> {
             new Game();
             dispose();

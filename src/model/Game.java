@@ -85,7 +85,6 @@ public class Game {
         finished = true;
         timer.stop();
         new YouDiedFrame();
-        rank = 0;
     }
 
     public Boolean IsFinished() {

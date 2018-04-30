@@ -103,11 +103,12 @@ public class Digger{
     private void showAllMines() {
         for (int h = 0; h < field.length; h++) {
             for (int w = 0; w < field[h].length; w++) {
+                diggedButton = field[h][w];
                 if (diggedButton.getHoard() == 9) {
                     new Digger(h, w).start();
                 }
                 if (diggedButton.getHoard() > 9 && diggedButton.getHoard() < 19) {
-                    diggedButton.setIcon(new ImageIcon("src/resources/wrongFlag.jpg"));
+                    diggedButton.setIcon(new ImageIcon(getClass().getResource("/wrongFlag.jpg")));
                 }
             }
         }
