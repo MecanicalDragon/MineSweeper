@@ -47,7 +47,7 @@ public class YouDiedFrame extends JWindow {
         resurrect.setBounds(55,175,100,25);
         resurrect.setForeground(Color.white);
         resurrect.addActionListener(e -> {
-            new Game();
+            Game.startNewGame();
             dispose();
         });
         background.add(resurrect);

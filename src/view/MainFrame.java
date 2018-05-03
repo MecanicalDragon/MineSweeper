@@ -58,7 +58,7 @@ public class MainFrame extends JFrame{
         add(background);
 
         JButton newGame = new JButton("Start New Game");
-        newGame.addActionListener(e -> new Game());
+        newGame.addActionListener(e -> Game.startNewGame());
         newGame.setBounds(525,70,200,28);
 
         JButton changeDifficulty = new JButton("Change Difficulty");

@@ -31,7 +31,7 @@ public class Game {
         return ranks[rank];
     }
 
-    public Game(){
+    private Game(){
         if (timer.isRunning()) {
             timer.stop();
         }
@@ -44,7 +44,6 @@ public class Game {
         closedTiles = MineField.getCurrentField().getFieldHeight()
                 *MineField.getCurrentField().getFieldWidth()
                 -MineField.getCurrentField().getMinesCount();
-        currentGame = this;
     }
 
     private void winTheGame() {
@@ -85,6 +84,10 @@ public class Game {
         finished = true;
         timer.stop();
         new YouDiedFrame();
+    }
+
+    public static void startNewGame(){
+        currentGame = new Game();
     }
 
     public Boolean IsFinished() {

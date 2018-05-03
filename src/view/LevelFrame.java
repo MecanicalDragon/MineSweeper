@@ -116,7 +116,7 @@ class LevelFrame extends JDialog {
             MineField.setNextMinesCount(m);
             MineField.setNextHeight(h);
             MineField.setNextWidth(w);
-            new Game();
+            Game.startNewGame();
             dispose();
     }
 
@@ -127,7 +127,7 @@ class LevelFrame extends JDialog {
                 && !widthField.getText().isEmpty())
             acceptOwnRules(minesCountField.getText(), heightField.getText(), widthField.getText());
         else  {
-            new Game();
+            Game.startNewGame();
             dispose();
         }
 
