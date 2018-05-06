@@ -22,12 +22,11 @@ public class YouDiedFrame extends JWindow {
         add(background);
 
         initializeResurrectButton();
-        initializeAndStartOpacityTimer();
-
+        StartOpacityTimer();
         setVisible(true);
     }
 
-    private void initializeAndStartOpacityTimer() {
+    private void StartOpacityTimer() {
         opacityTimer = new Timer(200, e ->{
                 opacity -= 0.05;
                 if (opacity < 1){

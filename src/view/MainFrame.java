@@ -59,14 +59,19 @@ public class MainFrame extends JFrame{
 
         JButton newGame = new JButton("Start New Game");
         newGame.addActionListener(e -> Game.startNewGame());
-        newGame.setBounds(525,70,200,28);
+        newGame.setBounds(525,70,200,25);
 
         JButton changeDifficulty = new JButton("Change Difficulty");
         changeDifficulty.addActionListener(e -> new view.LevelFrame(this));
-        changeDifficulty.setBounds(525,120,200,28);
+        changeDifficulty.setBounds(525,100,200,25);
+
+        JButton hallOfFame = new JButton("Hall of Fame");
+        hallOfFame.addActionListener(e -> new view.FameFrame(this));
+        hallOfFame.setBounds(525,130,200,25);
 
         background.add(newGame);
         background.add(changeDifficulty);
+        background.add(hallOfFame);
         background.add(time = new view.DigitalDisplay(524,15, 1));
         background.add(mines = new view.DigitalDisplay(594,15, 2));
         background.add(clicks = new view.DigitalDisplay(664,15, 3));

@@ -1,7 +1,9 @@
 package model;
 
+import view.FameFrame;
 import view.MainFrame;
 import control.MineField;
+import view.HeroFrame;
 import view.YouDiedFrame;
 import javax.swing.*;
 
@@ -11,7 +13,7 @@ public class Game {
     private static int rank;
     private static Timer timer = new Timer(1000, e -> MainFrame.getCurrentMainFrame().getTime().setText(
             String.valueOf(++currentGame.time)));
-    private static String[]ranks = {"Private (E-1)","Private (E-2)","Private, First Class","Corporal","Sergeant",
+    private static String[] armyRanks = {"Private (E-1)","Private (E-2)","Private, First Class","Corporal","Sergeant",
             "Staff Sergeant","Platoon Sergeant","First Sergeant","Staff Sergeant Major","Sergeant Major of the Army",
             "Warrant Officer-1","Chief Warrant Officer-2","Chief Warrant Officer-3","Chief Warrant Officer-4",
             "Second Lieutenant","First Lieutenant","Captain","Major","Lieutenant Colonel","Colonel","Brigadier General",
@@ -22,14 +24,10 @@ public class Game {
     private int time;
     private int closedTiles;
 
-    public void incrementClicks(){
-        MainFrame.getCurrentMainFrame().getClicks().setText(String.valueOf(++clicks));
-        if (clicks==1) timer.start();
-    }
-
-    public static String getRank(){
-        return ranks[rank];
-    }
+    private String newHero;
+    private String[] names;
+    private int[] ranks;
+    private int[] times;
 
     private Game(){
         if (timer.isRunning()) {
@@ -49,17 +47,70 @@ public class Game {
     private void winTheGame() {
         timer.stop();
         finished = true;
+        if (rank< armyRanks.length-1) rank++;
+        checkDifficulty();
+    }
+
+    private void checkDifficulty() {
+        if (MineField.getCurrentField().getDifficultyLevel() == 1) copyHallOfFameArrays(1);
+        else if (MineField.getCurrentField().getDifficultyLevel() == 2) copyHallOfFameArrays(2);
+        else if (MineField.getCurrentField().getDifficultyLevel() == 3) copyHallOfFameArrays(3);
+    }
+
+    private void copyHallOfFameArrays(int level) {
+        names = HallOfFame.getInstance().getNames(level);
+        ranks = HallOfFame.getInstance().getRanks(level);
+        times = HallOfFame.getInstance().getTimes(level);
+        updateLeaderBoard();
+    }
+
+    private void updateLeaderBoard() {
+        boolean newRecord = false;
+
+        for (int i = 0; i < 10; i++) {
+            if (time<=times[i]){
+                newRecord = true;
+                for (int j = 9; j > i; j--) {
+                    times[j] = times[j-1];
+                    ranks[j] = ranks[j-1];
+                    names[j] = names[j-1];
+                }
+                times[i] = time;
+                ranks[i] = rank;
+                showNewHeroDialog();
+                names[i] = newHero;
+                HallOfFame.saveHallOfFame();
+                new FameFrame(MainFrame.getCurrentMainFrame());
+                break;
+            }
+
+        }
+        if (!newRecord){
+            showVictoryDialog();
+        }
+    }
+
+    private void showNewHeroDialog() {
+        new Digger().playSound("/hero.wav");
+        new HeroFrame(MainFrame.getCurrentMainFrame());
+    }
+
+    private void showVictoryDialog() {
         new Digger().playSound("/victory.wav");
-        if (rank<ranks.length-1) rank++;
         JOptionPane.showMessageDialog(MainFrame.getCurrentMainFrame(),
                 new String[] {"Good job, soldier!",
                         "You coped within " + (time+1) + " seconds.",
                         "You digged " + clicks + " times.",
                         "Your new rank:",
-                        ranks[rank]},
+                        armyRanks[rank]},
                 "Congratulations!",
                 JOptionPane.INFORMATION_MESSAGE,
                 new ImageIcon(getClass().getResource("/complete.png")));
+    }
+
+    public void incrementClicks(){
+        MainFrame.getCurrentMainFrame().getClicks().setText(String.valueOf(++clicks));
+        if (clicks==1) timer.start();
     }
 
     public void incrementMinesLeft(){
@@ -94,7 +145,20 @@ public class Game {
         return finished;
     }
 
+    public void setNewHero(String newHero) {
+        this.newHero = newHero;
+    }
+
     public static Game getCurrentGame() {
         return currentGame;
     }
+
+    public static String[] getArmyRanks() {
+        return armyRanks;
+    }
+
+    public static String getRank(){
+        return armyRanks[rank];
+    }
+
 }

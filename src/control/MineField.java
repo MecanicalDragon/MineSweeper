@@ -15,6 +15,7 @@ public class MineField extends JPanel{
     private static int nextWidth = 9;
     private static int nextMinesCount = 10;
 
+    private int difficultyLevel;
     private int height;
     private int width;
     private int minesCount;
@@ -32,12 +33,19 @@ public class MineField extends JPanel{
                   height *20);
         setLayout(new GridLayout(height, width));
 
+        identifyDifficultyLevel();
         addButtons();
         plantMines();
         MarkNearbyTiles();
         setVisible(true);
 
         currentField = this;
+    }
+
+    private void identifyDifficultyLevel() {
+        if (height == 9 && width ==9 && minesCount ==10) difficultyLevel = 1;
+        else if (height == 16 && width ==16 && minesCount ==40) difficultyLevel = 2;
+        else if (height == 19 && width ==25 && minesCount ==99) difficultyLevel = 3;
     }
 
     private void markMine(int h, int w){
@@ -137,10 +145,6 @@ public class MineField extends JPanel{
         return currentField;
     }
 
-    public MinedButton[][] getMineField() {
-        return mineField;
-    }
-
     public static void setNextHeight(int nextHeight) {
         MineField.nextHeight = nextHeight;
     }
@@ -153,6 +157,10 @@ public class MineField extends JPanel{
         MineField.nextMinesCount = nextMinesCount;
     }
 
+    public MinedButton[][] getMineField() {
+        return mineField;
+    }
+
     public int getMinesCount() {
         return minesCount;
     }
@@ -163,5 +171,9 @@ public class MineField extends JPanel{
 
     public int getFieldWidth() {
         return width;
+    }
+
+    public int getDifficultyLevel() {
+        return difficultyLevel;
     }
 }
