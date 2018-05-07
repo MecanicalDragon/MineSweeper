@@ -43,12 +43,12 @@ public class Digger{
             diggedButton.setDisabledIcon(new ImageIcon(getClass().getResource(s)));
             diggedButton.setEnabled(false);
 
-            if (diggedButton.getHoard() == 9) {
-                if (!Game.getCurrentGame().IsFinished()){
-                    Game.getCurrentGame().endGame();
-                    playSound("/explosion.wav");
-                    showAllMines();
-                }
+            if (diggedButton.getHoard() == 9 && !Game.getCurrentGame().IsFinished()) {
+                diggedButton.setDisabledIcon(new ImageIcon(getClass().getResource("/mine.jpg")));
+                Game.getCurrentGame().endGame();
+                playSound("/explosion.wav");
+                showAllMines();
+
             }
 
             else if ((diggedButton.getHoard() == 0||ignoreNotZeroTile) && !Game.getCurrentGame().IsFinished()) {
@@ -104,7 +104,7 @@ public class Digger{
         for (int h = 0; h < field.length; h++) {
             for (int w = 0; w < field[h].length; w++) {
                 diggedButton = field[h][w];
-                if (diggedButton.getHoard() == 9) {
+                if (diggedButton.getHoard() == 9 && diggedButton.isEnabled()) {
                     new Digger(h, w).start();
                 }
                 if (diggedButton.getHoard() > 9 && diggedButton.getHoard() < 19) {
