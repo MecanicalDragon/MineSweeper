@@ -19,6 +19,7 @@ public class Game {
             "Second Lieutenant","First Lieutenant","Captain","Major","Lieutenant Colonel","Colonel","Brigadier General",
             "Major General","Lieutenant General","General","General of the Army"};
     private boolean finished;
+    private boolean newRecord;
     private int clicks;
     private int minesLeft;
     private int time;
@@ -49,6 +50,9 @@ public class Game {
         finished = true;
         if (rank< armyRanks.length-1) rank++;
         checkDifficulty();
+        if (!newRecord){
+            showVictoryDialog();
+        }
     }
 
     private void checkDifficulty() {
@@ -65,7 +69,6 @@ public class Game {
     }
 
     private void updateLeaderBoard() {
-        boolean newRecord = false;
 
         for (int i = 0; i < 10; i++) {
             if (time<=times[i]){
@@ -85,9 +88,7 @@ public class Game {
             }
 
         }
-        if (!newRecord){
-            showVictoryDialog();
-        }
+
     }
 
     private void showNewHeroDialog() {

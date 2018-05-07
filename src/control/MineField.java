@@ -36,7 +36,6 @@ public class MineField extends JPanel{
         identifyDifficultyLevel();
         addButtons();
         plantMines();
-        MarkNearbyTiles();
         setVisible(true);
 
         currentField = this;
@@ -95,50 +94,39 @@ public class MineField extends JPanel{
 
     private void plantMines() {
 
-
-        //fill field with zeroes
-        for (int h = 0; h < height; h++)
-            for (int w = 0; w < width; w++)
-                mineField[h][w].setHoard(0);
-
-        //plant mines in the field
         for (int minesPlanted = 0; minesPlanted < minesCount; ) {
-            int x = new Random().nextInt(height);
-            int y = new Random().nextInt(width);
-            if (mineField[x][y].getHoard() != 9) {
-                mineField[x][y].setHoard(9);
+            int h = new Random().nextInt(height);
+            int w = new Random().nextInt(width);
+            if (mineField[h][w].getHoard() != 9) {
+                mineField[h][w].setHoard(9);
+                markAdjacentButtons(h,w);
                 minesPlanted++;
             }
         }
     }
 
-    private void MarkNearbyTiles() {
-        for (int h = 0; h < mineField.length; h++) {
-            for (int w = 0; w < mineField[h].length; w++) {
-                if (mineField[h][w].getHoard() != 9) {
+    private void markAdjacentButtons(int h, int w) {
                     if (w != 0) {
-                        if (mineField[h][w - 1].getHoard() == 9)
-                            mineField[h][w].incrementHoard();
-                        if (h != 0) if (mineField[h - 1][w - 1].getHoard() == 9)
-                            mineField[h][w].incrementHoard();
-                        if (h != mineField.length - 1) if (mineField[h + 1][w - 1].getHoard() == 9)
-                            mineField[h][w].incrementHoard();
+                        if (mineField[h][w - 1].getHoard() != 9)
+                            mineField[h][w - 1].incrementHoard();
+                        if (h != 0 && mineField[h - 1][w - 1].getHoard() != 9)
+                            mineField[h - 1][w - 1].incrementHoard();
+                        if (h != mineField.length - 1 && mineField[h + 1][w - 1].getHoard() != 9)
+                            mineField[h + 1][w - 1].incrementHoard();
                     }
-                    if (h != 0) if (mineField[h - 1][w].getHoard() == 9)
-                        mineField[h][w].incrementHoard();
-                    if (h != mineField.length - 1) if (mineField[h + 1][w].getHoard() == 9)
-                        mineField[h][w].incrementHoard();
+                    if (h != 0 && mineField[h - 1][w].getHoard() != 9)
+                        mineField[h - 1][w].incrementHoard();
+                    if (h != mineField.length - 1 && mineField[h + 1][w].getHoard() != 9)
+                        mineField[h + 1][w].incrementHoard();
+
                     if (w != mineField[h].length - 1) {
-                        if (mineField[h][w + 1].getHoard() == 9)
-                            mineField[h][w].incrementHoard();
-                        if (h != 0) if (mineField[h - 1][w + 1].getHoard() == 9)
-                            mineField[h][w].incrementHoard();
-                        if (h != mineField.length - 1) if (mineField[h + 1][w + 1].getHoard() == 9)
-                            mineField[h][w].incrementHoard();
+                        if (mineField[h][w + 1].getHoard() != 9)
+                            mineField[h][w + 1].incrementHoard();
+                        if (h != 0 && mineField[h - 1][w + 1].getHoard() != 9)
+                            mineField[h - 1][w + 1].incrementHoard();
+                        if (h != mineField.length - 1 && mineField[h + 1][w + 1].getHoard() != 9)
+                            mineField[h + 1][w + 1].incrementHoard();
                     }
-                }
-            }
-        }
     }
 
     public static MineField getCurrentField() {
