@@ -41,7 +41,7 @@ public class HeroFrame extends JDialog {
             }
         });
         heroName.addActionListener(e -> confirm());
-        heroName.setToolTipText("Put your name to the leaderboard, son. You deserved it.");
+        heroName.setToolTipText("Put your name to the leaderboard, son. You've deserved it.");
         add(heroName);
     }
 

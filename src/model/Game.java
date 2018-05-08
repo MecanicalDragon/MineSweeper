@@ -101,7 +101,7 @@ public class Game {
         JOptionPane.showMessageDialog(MainFrame.getCurrentMainFrame(),
                 new String[] {"Good job, soldier!",
                         "You coped within " + (time+1) + " seconds.",
-                        "You digged " + clicks + " times.",
+                        "You dug " + clicks + " times.",
                         "Your new rank:",
                         armyRanks[rank]},
                 "Congratulations!",
