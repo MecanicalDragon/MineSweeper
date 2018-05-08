@@ -100,10 +100,10 @@ public class Game {
         new Digger().playSound("/victory.wav");
         JOptionPane.showMessageDialog(MainFrame.getCurrentMainFrame(),
                 new String[] {"Good job, soldier!",
-                        "You coped within " + (time+1) + " seconds.",
-                        "You dug " + clicks + " times.",
-                        "Your new rank:",
-                        armyRanks[rank]},
+                        "  ",
+                        "You've cleared this field within " + (time+1) + " seconds.",
+                        "You've dug " + clicks + " times.",
+                        "Your new rank: " + armyRanks[rank]},
                 "Congratulations!",
                 JOptionPane.INFORMATION_MESSAGE,
                 new ImageIcon(getClass().getResource("/complete.png")));
