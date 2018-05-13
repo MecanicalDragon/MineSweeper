@@ -10,6 +10,9 @@ public class FameFrame extends JDialog {
     public FameFrame(JFrame owner){
         super(owner,"Hall of Fame", true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        Image image = Toolkit.getDefaultToolkit().createImage
+                (getClass().getResource("/cup.png"));
+        setIconImage( image );
         setLocation(owner.getLocation().x+100,owner.getLocation().y+80);
         setSize(370,300);
         setResizable(false);

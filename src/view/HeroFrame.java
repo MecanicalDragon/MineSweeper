@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
+import java.awt.*;
 
 public class HeroFrame extends JDialog {
 
@@ -12,6 +13,9 @@ public class HeroFrame extends JDialog {
 
     public HeroFrame(JFrame owner) {
         super(owner,"Mother of God!", true);
+        Image image = Toolkit.getDefaultToolkit().createImage
+                (getClass().getResource("/leftLaurel.png"));
+        setIconImage( image );
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setAlwaysOnTop(true);
         setBounds(view.MainFrame.getCurrentMainFrame().getLocation().x + 110,
