@@ -1,0 +1,14 @@
+
+
+Version:	3.10
+CmdLine:	E:\Java\MineSweeper\out\artifacts\MineSweeper_jar\MineSweeper.exe --l4j-debug
+WOW64:		yes
+Working dir:	E:\Java\MineSweeper\out\artifacts\MineSweeper_jar\.
+Java min ver:	
+Java max ver:	
+Bundled JRE:	e:\progs
+Check launcher:	e:\progs\bin\javaw.exe (OK)
+Launcher:	e:\progs\bin\javaw.exe
+Launcher args:	-jar "E:\Java\MineSweeper\out\artifacts\MineSweeper_jar\MineSweeper.exe"
+Args length:	72/32768 chars
+Exit code:	0
